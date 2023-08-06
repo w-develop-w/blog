@@ -1,136 +1,33 @@
 import React from "react"
 import "./App.css"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { Post } from "./components/Post/Post"
+import { Header } from "./components/Header/Header"
 
 function App() {
-    return (
-        <main>
-            <header>
-                <a href="/" className="logo">
-                    Blog
-                </a>
-                <nav>
-                    <a href="">Login</a>
-                    <a href="">Register</a>
-                </nav>
-            </header>
+  return (
+    <Router>
+      <Routes>
+        <Route
+          index
+          element={
+            <main>
+              <Header />
+              <Post />
+              <Post />
+              <Post />
+              <Post />
+              <Post />
+            </main>
+          }
+        />
 
-            <div className="post">
-                <div className="image">
-                    <img src="img/1.webp" alt="Img"></img>
-                </div>
-                <div className="texts">
-                    <h2>
-                        Full-house battery backup coming later
-                        this year
-                    </h2>
-
-                    <p className="info">
-                        <a className="author">Dawid Paszko</a>
-                        <time>2023-01-06 16:45</time>
-                    </p>
-
-                    <p className="summary">
-                        Today at its special launch event, home backup power
-                        giant EcoFlow launched a flurry of new products,
-                        including a “Whole-Home Backup Power Solution.
-                    </p>
-                </div>
-            </div>
-
-            <div className="post">
-                <div className="image">
-                    <img src="img/1.webp" alt="Img"></img>
-                </div>
-                <div className="texts">
-                    <h2>
-                        EcoFlow teases full-house battery backup coming later
-                        this year
-                    </h2>
-
-                    <p className="info">
-                        <a className="author">Dawid Paszko</a>
-                        <time>2023-01-06 16:45</time>
-                    </p>
-
-                    <p className="summary">
-                        Today at its special launch event, home backup power
-                        giant EcoFlow launched a flurry of new products,
-                        including a “Whole-Home Backup Power Solution.”{" "}
-                    </p>
-                </div>
-            </div>
-
-            <div className="post">
-                <div className="image">
-                    <img src="img/1.webp" alt="Img"></img>
-                </div>
-                <div className="texts">
-                    <h2>
-                        EcoFlow teases full-house battery backup coming later
-                        this year
-                    </h2>
-
-                    <p className="info">
-                        <a className="author">Dawid Paszko</a>
-                        <time>2023-01-06 16:45</time>
-                    </p>
-
-                    <p className="summary">
-                        Today at its special launch event, home backup power
-                        giant EcoFlow launched a flurry of new products,
-                        including a “Whole-Home Backup Power Solution.”{" "}
-                    </p>
-                </div>
-            </div>
-
-            <div className="post">
-                <div className="image">
-                    <img src="img/1.webp" alt="Img"></img>
-                </div>
-                <div className="texts">
-                    <h2>
-                        EcoFlow teases full-house battery backup coming later
-                        this year
-                    </h2>
-
-                    <p className="info">
-                        <a className="author">Dawid Paszko</a>
-                        <time>2023-01-06 16:45</time>
-                    </p>
-
-                    <p className="summary">
-                        Today at its special launch event, home backup power
-                        giant EcoFlow launched a flurry of new products,
-                        including a “Whole-Home Backup Power Solution.”{" "}
-                    </p>
-                </div>
-            </div>
-
-            <div className="post">
-                <div className="image">
-                    <img src="img/1.webp" alt="Img"></img>
-                </div>
-                <div className="texts">
-                    <h2>
-                        EcoFlow teases full-house battery backup coming later
-                        this year
-                    </h2>
-
-                    <p className="info">
-                        <a className="author">Dawid Paszko</a>
-                        <time>2023-01-06 16:45</time>
-                    </p>
-
-                    <p className="summary">
-                        Today at its special launch event, home backup power
-                        giant EcoFlow launched a flurry of new products,
-                        including a “Whole-Home Backup Power Solution.”{" "}
-                    </p>
-                </div>
-            </div>
-       
-        </main>
-    )
+        <Route path={'/login'} element={
+            <div>login</div>
+        }/>
+      </Routes>
+    </Router>
+  )
 }
 
 export default App
