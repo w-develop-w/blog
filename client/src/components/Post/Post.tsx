@@ -6,7 +6,7 @@ export function Post() {
             </div>
             <div className="texts">
                 <h2>
-                    EcoFlow teases full-house battery backup coming later this
+                    Full-house battery backup coming later this
                     year
                 </h2>
 
