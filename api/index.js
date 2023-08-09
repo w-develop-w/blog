@@ -16,6 +16,8 @@ app.use(cors());
 // with a JSON payload, this middleware will parse the JSON data and make it available in the req.body object for further processing. 
 app.use(express.json());
 
+mongoose.connect('mongodb+srv://blog:7awq9Z2qgVTScZ35@cluster0.urykbbc.mongodb.net/')
+
 //  This code sets up a route for handling HTTP POST requests to the '/register' endpoint. When a POST request is made to this 
 //  endpoint, the callback function (req, res) => { ... } is executed. Inside this callback, you're sending a JSON response of 
 //  'test ok' back to the client.
