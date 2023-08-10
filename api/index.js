@@ -7,6 +7,8 @@ const cors = require('cors');
 //  settings for your server.
 const app = express();
 
+const User = require('./models/User')
+
 //  This line imports the 'cors' module into your application. The 'cors' string is a package name that corresponds to the 
 // "Cross-Origin Resource Sharing" middleware in Express.js. CORS is a security feature implemented by web browsers that restricts
 //  web pages from making requests to a different domain than the one that served the web page.
@@ -21,11 +23,15 @@ mongoose.connect('mongodb+srv://blog:7awq9Z2qgVTScZ35@cluster0.urykbbc.mongodb.n
 //  This code sets up a route for handling HTTP POST requests to the '/register' endpoint. When a POST request is made to this 
 //  endpoint, the callback function (req, res) => { ... } is executed. Inside this callback, you're sending a JSON response of 
 //  'test ok' back to the client.
-app.post('/register', (req, res) => {
+app.post('/register', async (req, res) => {
     const {username, password} = req.body;
     // In the /register route, after parsing the incoming JSON payload and extracting the username and password, this line responds 
     // to the client with a JSON object containing the extracted data. 
-    res.json({requestData: {username, password}});
+    
+    const userDoc = await User.create({username, password});
+
+    res.json(userDoc);
+    // res.json({requestData: {username, password}});
 });
 
 // This line starts the Express server and makes it listen on port 4000. When the server starts successfully, the provided callback 
