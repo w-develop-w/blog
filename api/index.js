@@ -28,9 +28,13 @@ app.post('/register', async (req, res) => {
     // In the /register route, after parsing the incoming JSON payload and extracting the username and password, this line responds 
     // to the client with a JSON object containing the extracted data. 
     
-    const userDoc = await User.create({username, password});
+    try {
+        const userDoc = await User.create({username, password});
+        res.json(userDoc);
+    } catch {
+        res.status(400).json(e);
+    }
 
-    res.json(userDoc);
     // res.json({requestData: {username, password}});
 });
 
