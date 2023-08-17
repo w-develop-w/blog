@@ -6,12 +6,18 @@ const express = require('express');
 // served the web page
 const cors = require('cors');
 
+const mongoose = require('mongoose')
+
+//  is importing the User model from a module located in the ./models/User.js
+const User = require('./models/User')
+
+const bcrypt = require('bcryptjs')
+
 //  This initializes an instance of the Express application. You'll use this instance to define routes, middleware, and other
 //  settings for your server.
 const app = express();
 
-//  is importing the User model from a module located in the ./models/User.js
-const User = require('./models/User')
+const salt = bcrypt.genSaltSync(10)
 
 //  This line imports the 'cors' module into your application. The 'cors' string is a package name that corresponds to the 
 // "Cross-Origin Resource Sharing" middleware in Express.js. CORS is a security feature implemented by web browsers that restricts
@@ -37,14 +43,15 @@ app.post('/register', async (req, res) => {
         // Inside a try block, the code attempts to create a new user document in the MongoDB database using the User.create() method.
         // This method is likely provided by the User model you imported earlier. The create() method creates a new user record in the
         // database with the provided username and password.
-        const userDoc = await User.create({username, password});
+        const userDoc = await User.create({username, password: bcrypt.hashSync(password, salt)});
         // If the user creation is successful, the code responds to the client with a JSON object containing the created user document
         // by calling res.json(userDoc).
         res.json(userDoc);
-    } catch {
+    } catch(e) {
         // If an error occurs during the user creation (for example, due to validation errors or database connectivity issues), the code
         //  catches the error in the catch block. It then responds to the client with a 400 status code (Bad Request) and sends the error
         //  object as a JSON response using res.status(400).json(e).
+        console.log(e)
         res.status(400).json(e);
     }
 
@@ -54,5 +61,5 @@ app.post('/register', async (req, res) => {
 // This line starts the Express server and makes it listen on port 4000. When the server starts successfully, the provided callback 
 // function is executed, which logs a message to the console indicating that the server is listening.
 app.listen(4000, () => {
-    console.log('Server is listening on port 4000');
+    // console.log('Server is listening on port 4000');
 });
